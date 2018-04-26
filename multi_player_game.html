@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Player Game</title>
+  <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+  <canvas id="canvas" height="800" width="600"></canvas>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      $.get( "https://guarded-sierra-86809.herokuapp.com/players.json", function( data ) {
+        var players = data;
+        drawPlayers(players);
+      });
+
+      function drawPlayers(players){
+        for(i=0;i<players.length;i++){
+          context.fillStyle = "black";
+          context.fillRect(players[i].x_location,players[i].y_location,20,20)
+        }
+      }
+    });
+  </script>
+</body>
+</html>
